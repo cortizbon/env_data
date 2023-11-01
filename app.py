@@ -45,11 +45,25 @@ with tab1:
                         'datos_filtrados.csv')
 
 with tab2:
-    ID = st.selectbox("Seleccione una ubicación", info['name'].unique())
+    st.write(f"Son {len(info['name'].unique())} puntos.")
+    NAME = st.selectbox("Seleccione una ubicación", info['name'].unique())
+    ID = info[info['name'] == NAME]['uid']
     TOKEN = "564211daa23309754373f1044fb4453eca26784f"
-    PATH = f"https://att.waqi.info/feed/{ID}/?token={TOKEN}"
+    try:
+        PATH = f"https://att.waqi.info/feed/A{ID}/?token={TOKEN}"
+        response = rq.get(PATH)
+        print(response)
+    except:
+        PATH = f"https://att.waqi.info/feed/@{ID}/?token={TOKEN}"
+        response = rq.get(PATH)
+        print(response)
+
+
+
     
-    response = rq.get(PATH)
+    
+
+
 
     st.download_button("Descargar datos", 
                        info.to_csv(index=False),
