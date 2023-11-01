@@ -71,12 +71,12 @@ with tab2:
     try:
         PATH = f"https://att.waqi.info/feed/A{ID}/?token={TOKEN}"
         response = rq.get(PATH)
-        st.write(response)
+        st.write(response.json())
         st.write("test")
     except:
         PATH = f"https://att.waqi.info/feed/@{ID}/?token={TOKEN}"
         response = rq.get(PATH)
-        st.write(response)
+        st.write(response.json())
         st.write("test")
 
     st.download_button("Descargar datos", info.to_csv(index=False), "info.csv")
