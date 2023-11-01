@@ -48,15 +48,18 @@ with tab2:
     st.write(f"Son {len(info['name'].unique())} puntos.")
     NAME = st.selectbox("Seleccione una ubicación", info['name'].unique())
     ID = info[info['name'] == NAME]['uid']
+    st.write(ID)
     TOKEN = "564211daa23309754373f1044fb4453eca26784f"
     try:
         PATH = f"https://att.waqi.info/feed/A{ID}/?token={TOKEN}"
         response = rq.get(PATH)
         st.write(response)
+        st.write("test")
     except:
         PATH = f"https://att.waqi.info/feed/@{ID}/?token={TOKEN}"
         response = rq.get(PATH)
         st.write(response)
+        st.write("test")
 
 
 
