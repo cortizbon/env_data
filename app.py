@@ -52,11 +52,11 @@ with tab2:
     try:
         PATH = f"https://att.waqi.info/feed/A{ID}/?token={TOKEN}"
         response = rq.get(PATH)
-        print(response)
+        st.write(response)
     except:
         PATH = f"https://att.waqi.info/feed/@{ID}/?token={TOKEN}"
         response = rq.get(PATH)
-        print(response)
+        st.write(response)
 
 
 
