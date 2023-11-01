@@ -65,8 +65,8 @@ with tab2:
 
     fig, ax = plt.subplots()
     ax.axis('off')
-    base = locs.plot(color='white', edgecolor='black', ax=ax, figsize=(14, 10))
-    info.plot(ax=base, color='red', markersize=5)
+    base = locs.plot(color='white', edgecolor='black', ax=ax, figsize=(10, 6))
+    info[info["name"] == NAME].plot(ax=base, color='red', markersize=5)
     st.pyplot(fig)
     try:
         PATH = f"https://att.waqi.info/feed/A{ID}/?token={TOKEN}"
@@ -79,4 +79,4 @@ with tab2:
         st.write(response.json())
         st.write("test")
 
-    st.download_button("Descargar datos", info.to_csv(index=False), "info.csv")
+    
