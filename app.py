@@ -6,7 +6,7 @@ import requests as rq
 st.title('Test')
 
 tab1, tab2 = st.tabs(['Datos históricos', 'Solicitud a API'])
-TOKEN = "564211daa23309754373f1044fb4453eca26784f"
+TOKEN = st.secrets["TOKEN"]
 ID = None
 PATH = f"https://att.waqi.info/feed/{ID}/?token={TOKEN}"
 
