@@ -46,6 +46,7 @@ with tab1:
 
 with tab2:
     st.write(f"Son {len(info['name'].unique())} puntos.")
+    st.write("test")
     NAME = st.selectbox("Seleccione una ubicación", info['name'].unique())
     ID = info[info['name'] == NAME]['uid']
     st.write(ID)
