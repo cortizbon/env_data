@@ -8,13 +8,12 @@ import matplotlib.pyplot as plt
 st.title("Test")
 
 tab1, tab2 = st.tabs(["Datos históricos", "Solicitud a API"])
-TOKEN = "564211daa23309754373f1044fb4453eca26784f"#st.secrets["TOKEN"]
+TOKEN = st.secrets["TOKEN"]
 ID = None
 PATH = f"https://att.waqi.info/feed/{ID}/?token={TOKEN}"
 
 df = pd.read_csv("data___env.csv")
-info = gpd.read_file("info_points.geojson")
-locs = gpd.read_file("locs.geojson")
+info = pd.read_csv('info_locs.csv')
 
 
 with tab1:
@@ -60,17 +59,15 @@ with tab1:
 
 with tab2:
     lista_puntos = ['Todos'] + list(info['name'].unique())
-    st.write(f"Son {len(lista_puntos)- 1} puntos.")
+    st.write(f"Son {len(lista_puntos)- 1} puntos de recolección de información.")
     NAME = st.selectbox("Seleccione una ubicación", lista_puntos)
 
-    fig, ax = plt.subplots(figsize=(8, 4))
-    ax.axis('off')
-    base = locs.plot(color='white', edgecolor='black', ax=ax, figsize=(8, 4))
     if NAME == 'Todos':
-        info.plot(ax=base, color='red', markersize=5, figsize=(8, 4))
+        st.map(info)
     else:
         ID = info[info["name"] == NAME]["uid"].reset_index(drop=True)[0]
-        info[info["name"] == NAME].plot(ax=base, color='red', markersize=5, figsize=(8, 4))
+        st.map(info[info["name"] == NAME])
+        
         PATH = f"https://att.waqi.info/feed/A{ID}/?token={TOKEN}"
         response = rq.get(PATH)
         if response.json()['status'] != 'error':
@@ -80,7 +77,6 @@ with tab2:
             response = rq.get(PATH)
             st.write(response.json()['data']['city']['location'])
     
-    st.pyplot(fig)
 
 
 
