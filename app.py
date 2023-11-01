@@ -65,7 +65,7 @@ with tab2:
 
     fig, ax = plt.subplots()
     ax.axis('off')
-    base = locs.plot(color='white', edgecolor='black', ax=ax, figsize=(10, 6))
+    base = locs.plot(color='white', edgecolor='black', ax=ax, figsize=(8, 4))
     info[info["name"] == NAME].plot(ax=base, color='red', markersize=5)
     st.pyplot(fig)
     try:
@@ -73,10 +73,12 @@ with tab2:
         response = rq.get(PATH)
         st.write(response.json())
         st.write("test")
+        st.write(TOKEN)
     except:
         PATH = f"https://att.waqi.info/feed/@{ID}/?token={TOKEN}"
         response = rq.get(PATH)
         st.write(response.json())
         st.write("test")
+        st.write(TOKEN)
 
     
