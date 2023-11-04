@@ -80,10 +80,14 @@ with tab2:
             response = rq.get(PATH)
             if response.json()['status'] != 'error':
                 st.write(response.json()['data']['city']['location'])
+                st.write(response.json()['data']['attributions'][0]['name'])
+                st.write(response.json()['data']['attributions'][0]['url'])
             else:
                 PATH = f"https://att.waqi.info/feed/@{ID}/?token={TOKEN}"
                 response = rq.get(PATH)
                 st.write(response.json()['data']['city']['location'])
+                st.write(response.json()['data']['attributions'][0]['name'])
+                st.write(response.json()['data']['attributions'][0]['url'])
     
 
 
