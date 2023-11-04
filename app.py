@@ -5,7 +5,7 @@ import requests as rq
 import geopandas as gpd
 import matplotlib.pyplot as plt
 st.set_page_config(layout='wide')
-st.title("Test")
+st.title("EnvData")
 
 tab1, tab2 = st.tabs(["Datos históricos", "Solicitud a API"])
 TOKEN = st.secrets["TOKEN"]
