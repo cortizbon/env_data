@@ -63,13 +63,13 @@ with tab1:
         st.write(' ')
 
 with tab2:
-    col3, col4 = st.columns((4, 1))
-    with col4:
+    col4, col3 = st.columns((4, 1))
+    with col3:
         lista_puntos = ['Todos'] + list(info['name'].unique())
         st.write(f"Son {len(lista_puntos)- 1} puntos de recolección de información.")
         NAME = st.selectbox("Seleccione una ubicación", lista_puntos)
 
-    with col3:
+    with col4:
         if NAME == 'Todos':
             st.map(info)
         else:
